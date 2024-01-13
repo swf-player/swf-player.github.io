@@ -79,10 +79,15 @@
     <script>
         function generateLinks() {
             var swfUrl = document.getElementById("swfUrl").value;
-            var currentUrl = window.location.href;
+            var baseUrl = window.location.origin + window.location.pathname;
 
-            var link1 = currentUrl + "flash/?url=" + encodeURIComponent(swfUrl);
-            var link2 = currentUrl + "flash2/?url=" + encodeURIComponent(swfUrl);
+            // Remove trailing slash if present
+            if (baseUrl.endsWith('/')) {
+                baseUrl = baseUrl.slice(0, -1);
+            }
+
+            var link1 = baseUrl + "/flash/?url=" + encodeURIComponent(swfUrl);
+            var link2 = baseUrl + "/flash2/?url=" + encodeURIComponent(swfUrl);
 
             document.getElementById("link1").value = link1;
             document.getElementById("link2").value = link2;
