@@ -2,36 +2,88 @@
 <html>
 <head>
     <title>SWF URL Generator</title>
-    <script>
-        function generateLinks() {
-            var swfUrl = document.getElementById('swfUrlInput').value;
-            var currentUrl = window.location.href;
-
-            var link1 = currentUrl + '/flash/' + swfUrl;
-            var link2 = currentUrl + '/flash2/' + swfUrl;
-
-            document.getElementById('link1').innerHTML = '<a href="' + link1 + '">' + link1 + '</a>';
-            document.getElementById('link2').innerHTML = '<a href="' + link2 + '">' + link2 + '</a>';
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
         }
 
-        function copyToClipboard() {
-            var input = document.getElementById('swfUrlInput');
-            input.select();
-            document.execCommand('copy');
-            alert('Copied to clipboard!');
+        #swfUrl {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
         }
-    </script>
+
+        .link-container {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .generated-link {
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 400px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .copy-button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>SWF URL Generator</h1>
-    <form>
-        <label for="swfUrlInput">Enter SWF URL:</label>
-        <input type="text" id="swfUrlInput" onclick="this.select()">
-        <input type="button" value="Generate Links" onclick="generateLinks()">
-        <input type="button" value="Copy to Clipboard" onclick="copyToClipboard()">
-    </form>
-    <h2>Generated Links:</h2>
-    <div id="link1"></div>
-    <div id="link2"></div>
+    <h2>Enter SWF URL</h2>
+    <input type="text" id="swfUrl" placeholder="Enter SWF URL here">
+    <button onclick="generateLinks()">Generate Links</button>
+
+    <div class="link-container">
+        <input type="text" id="link1" class="generated-link" onclick="selectText('link1')">
+        <button class="copy-button" onclick="copyToClipboard('link1')">Copy</button>
+    </div>
+
+    <div class="link-container">
+        <input type="text" id="link2" class="generated-link" onclick="selectText('link2')">
+        <button class="copy-button" onclick="copyToClipboard('link2')">Copy</button>
+    </div>
+
+    <script>
+        function generateLinks() {
+            var swfUrl = document.getElementById("swfUrl").value;
+            var currentUrl = window.location.href;
+
+            var link1 = currentUrl + "flash/?url=" + encodeURIComponent(swfUrl);
+            var link2 = currentUrl + "flash2/?url=" + encodeURIComponent(swfUrl);
+
+            document.getElementById("link1").value = link1;
+            document.getElementById("link2").value = link2;
+        }
+
+        function selectText(elementId) {
+            var text = document.getElementById(elementId);
+            text.select();
+            text.setSelectionRange(0, 99999); /* For mobile devices */
+        }
+
+        function copyToClipboard(elementId) {
+            var text = document.getElementById(elementId);
+            text.select();
+            text.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand("copy");
+        }
+    </script>
 </body>
 </html>
