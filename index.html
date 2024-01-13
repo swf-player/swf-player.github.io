@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SWF URL Generator</title>
+    <script>
+        function generateLinks() {
+            var swfUrl = document.getElementById('swfUrlInput').value;
+            var currentUrl = window.location.href;
+
+            var link1 = currentUrl + '/flash/' + swfUrl;
+            var link2 = currentUrl + '/flash2/' + swfUrl;
+
+            document.getElementById('link1').innerHTML = '<a href="' + link1 + '">' + link1 + '</a>';
+            document.getElementById('link2').innerHTML = '<a href="' + link2 + '">' + link2 + '</a>';
+        }
+
+        function copyToClipboard() {
+            var input = document.getElementById('swfUrlInput');
+            input.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+    </script>
+</head>
+<body>
+    <h1>SWF URL Generator</h1>
+    <form>
+        <label for="swfUrlInput">Enter SWF URL:</label>
+        <input type="text" id="swfUrlInput" onclick="this.select()">
+        <input type="button" value="Generate Links" onclick="generateLinks()">
+        <input type="button" value="Copy to Clipboard" onclick="copyToClipboard()">
+    </form>
+    <h2>Generated Links:</h2>
+    <div id="link1"></div>
+    <div id="link2"></div>
+</body>
+</html>
