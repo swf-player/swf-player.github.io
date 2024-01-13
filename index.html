@@ -68,16 +68,17 @@
 </head>
 <body>
     <h1>SWF Player URL Generator</h1>
+    <div style="padding:20px;"><img title="swf player logo" src="android-chrome-192x192.png"/></div>
     <input class="generated-link" type="text" id="swfUrl" placeholder="Enter SWF URL here">
     <button class="copy-button"  onclick="generateLinks()">Generate Links</button>
 
     <div class="link-container">
-        <input type="text" id="link1" class="generated-link" onclick="selectText('link1')">
+        <input placeholder="Waflash" type="text" id="link1" class="generated-link" onclick="selectText('link1')">
         <button class="copy-button" onclick="copyToClipboard('link1')">Copy</button>
     </div>
 
     <div class="link-container">
-        <input type="text" id="link2" class="generated-link" onclick="selectText('link2')">
+        <input placeholder="Ruffle" type="text" id="link2" class="generated-link" onclick="selectText('link2')">
         <button class="copy-button" onclick="copyToClipboard('link2')">Copy</button>
     </div>
 
@@ -112,7 +113,7 @@
         }
     </script>
     <footer>
-        Powered by <a href="https://www.w3technic.com" target="_blank">W3technic</a>
+        Powered by <a href="https://www.w3technic.com" target="_blank">W3technic</a> | <a href="https://github.com/swf-player">Github</a>
     </footer>
 </body>
 </html>
