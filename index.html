@@ -43,12 +43,28 @@
         .copy-button:hover {
             background-color: #45a049;
         }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            background-color: #333;
+            color: white;
+        }
+
+        footer a {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <h2>Enter SWF URL</h2>
     <input type="text" id="swfUrl" placeholder="Enter SWF URL here">
-    <button onclick="generateLinks()">Generate Links</button>
+    <button class="copy-button"  onclick="generateLinks()">Generate Links</button>
 
     <div class="link-container">
         <input type="text" id="link1" class="generated-link" onclick="selectText('link1')">
@@ -85,5 +101,8 @@
             document.execCommand("copy");
         }
     </script>
+    <footer>
+        Powered by <a href="https://www.w3technic.com" target="_blank">w3technic</a>
+    </footer>
 </body>
 </html>
