@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bloxorz</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.RufflePlayer.config = {
+            autoplay: "on",
+            contextMenu: false,
+            unmuteOverlay: "hidden",
+        };
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the value of the 'url' parameter from the query string
+            const queryString = window.location.search;
+            const urlParam = new URLSearchParams(queryString).get('url');
+
+            if (urlParam) {
+                // Check if the URL ends with '.swf'
+                if (urlParam.endsWith('.swf')) {
+                    // Load RufflePlayer library script
+                    let script = document.createElement('script');
+                    script.src = 'https://oldflashgames.github.io/ruffle/ruffle.js';
+                    script.onload = function () {
+                        // RufflePlayer library is loaded
+                        let ruffle = window.RufflePlayer.newest();
+                        let container = document.getElementById("container");
+                        let player = Object.assign(container.appendChild(ruffle.createPlayer()), {
+                            style: 'width: 100vw; height: 100vh',
+                        });
+                        // Load the SWF file
+                        player.load({
+                            url: urlParam
+                        });
+                    };
+                    // Append the RufflePlayer script to the document
+                    document.body.appendChild(script);
+                } else {
+                    // Handle the case where the URL doesn't end with '.swf'
+                    console.error("Invalid SWF URL. The URL should end with '.swf'.");
+                }
+            } else {
+                // Handle the case where 'url' parameter is not provided
+                console.error("Missing 'url' parameter in the URL.");
+            }
+        });
+    </script>
+</body>
+</html>
