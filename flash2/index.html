@@ -33,7 +33,7 @@
                 if (urlParam.endsWith('.swf')) {
                     // Load RufflePlayer library script
                     let script = document.createElement('script');
-                    script.src = 'https://oldflashgames.github.io/ruffle/ruffle.js';
+                    script.src = 'https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.1.0-nightly.2023.10.2/ruffle.js';
                     script.onload = function () {
                         // RufflePlayer library is loaded
                         let ruffle = window.RufflePlayer.newest();
