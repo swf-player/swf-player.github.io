@@ -100,15 +100,19 @@
             // Check if the input is a full URL or just a file name
             var isFullUrl = swfUrlOrFileName.startsWith('http://') || swfUrlOrFileName.startsWith('https://');
 
-            if (isFullUrl) {
-                var link1 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
-                var link2 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
-                var link3 = baseUrl + "/emulatorjs/?url=" + encodeURIComponent(swfUrlOrFileName);
-            } else {
-                var link1 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
-                var link2 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
-                var link3 = baseUrl + "/roms/" + encodeURIComponent(swfUrlOrFileName);
+            if (!isFullUrl) {
+                
+                var url1 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
+                var url2 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
+                var url3 = baseUrl + "/roms/" + encodeURIComponent(swfUrlOrFileName);
             }
+
+
+            var link1 = "https://swf-player.github.io/flash/?url=" + encodeURIComponent(url1);
+            var link2 = "https://swf-player.github.io/flash2/?url=" + encodeURIComponent(url2);
+            var link3 = "https://swf-player.github.io/emulatorjs/?url=" + encodeURIComponent(url3);
+
+
 
             document.getElementById("link1").value = link1;
             document.getElementById("link2").value = link2;
