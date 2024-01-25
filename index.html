@@ -82,6 +82,11 @@
         <button class="copy-button" onclick="copyToClipboard('link2')">Copy</button>
     </div>
 
+    <div class="link-container">
+        <input placeholder="Custom Link" type="text" id="link3" class="generated-link" onclick="selectText('link3')">
+        <button class="copy-button" onclick="copyToClipboard('link3')">Copy</button>
+    </div>
+
     <script>
         function generateLinks() {
             var swfUrl = document.getElementById("swfUrl").value;
@@ -94,9 +99,11 @@
 
             var link1 = baseUrl + "/flash/?url=" + encodeURIComponent(swfUrl);
             var link2 = baseUrl + "/flash2/?url=" + encodeURIComponent(swfUrl);
+            var link3 = baseUrl + "/emulatorjs/index.html?url="+ encodeURIComponent(swfUrl);
 
             document.getElementById("link1").value = link1;
             document.getElementById("link2").value = link2;
+            document.getElementById("link3").value = link3;
         }
 
         function selectText(elementId) {
