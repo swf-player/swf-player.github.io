@@ -1,0 +1,44 @@
+<!-- Game -->
+<div class="display-game-big">
+    <div style="width: 680px; height: 510px; max-width: 100%;">
+        <div id="game"></div>
+    </div>
+    <script type="text/javascript">
+        // Function to validate a URL
+        function isValidUrl(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Get the EJS_gameUrl parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameUrlParam = urlParams.get('url');
+
+        // Check if the game URL is valid
+        if (gameUrlParam && isValidUrl(gameUrlParam)) {
+            EJS_gameUrl = gameUrlParam;
+        } else {
+            // Default game URL if the parameter is missing or invalid
+            EJS_gameUrl = 'https://www.allsonicgames.net/roms/sonic-jam.gen';
+        }
+
+        // Rest of your code
+        EJS_player = '#game';
+        EJS_biosUrl = ''; // Url to Famicom Disk System bios
+        EJS_core = 'segaMD';
+        EJS_lightgun = false; // NES Lightgun
+        EJS_mouse = false;    // SNES Mouse
+        EJS_multitap = false; // SNES Multitap
+    </script>
+    <script src="https://www.emulatorjs.com/loader.js?v=1706185375"></script>
+</div>
+
+<!-- Instructions -->
+<div class="display-instructions-big" style="width: 680px; margin: 0px; padding-top: 3px;">
+    <div class="key">S</div> <div class="ins">A</div> <div class="key">X</div> <div class="ins">B</div> <div class="key">Z</div> <div class="ins">C</div> <div class="key">Enter</div> <div class="ins">Start</div><div class="key k-au"></div> <div class="key k-ad"></div> <div class="key k-al"></div> <div class="key k-ar"></div> <div class="ins">Move</div>
+</div>
+<div class="display-clear"></div>
