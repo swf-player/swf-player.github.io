@@ -69,7 +69,7 @@
 <body>
     <h1>SWF Player URL Generator</h1>
     <div style="padding:20px;"><img title="swf player logo" src="android-chrome-192x192.png"/></div>
-    <input class="generated-link" type="text" id="swfUrl" placeholder="Enter SWF URL here">
+    <input class="generated-link" type="text" id="swfUrl" placeholder="Enter SWF URL or file name">
     <button class="copy-button"  onclick="generateLinks()">Generate Links</button>
 
     <div class="link-container">
@@ -89,7 +89,7 @@
 
     <script>
         function generateLinks() {
-            var swfUrl = document.getElementById("swfUrl").value;
+            var swfUrlOrFileName = document.getElementById("swfUrl").value;
             var baseUrl = window.location.origin + window.location.pathname;
 
             // Remove trailing slash if present
@@ -97,9 +97,18 @@
                 baseUrl = baseUrl.slice(0, -1);
             }
 
-            var link1 = baseUrl + "/flash/?url=" + encodeURIComponent(swfUrl);
-            var link2 = baseUrl + "/flash2/?url=" + encodeURIComponent(swfUrl);
-            var link3 = baseUrl + "/emulatorjs/index.html?url="+ encodeURIComponent(swfUrl);
+            // Check if the input is a full URL or just a file name
+            var isFullUrl = swfUrlOrFileName.startsWith('http://') || swfUrlOrFileName.startsWith('https://');
+
+            if (isFullUrl) {
+                var link1 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
+                var link2 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
+                var link3 = baseUrl + "/emulatorjs/?url=" + encodeURIComponent(swfUrlOrFileName);
+            } else {
+                var link1 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
+                var link2 = baseUrl + "/swf/" + encodeURIComponent(swfUrlOrFileName);
+                var link3 = baseUrl + "/roms/" + encodeURIComponent(swfUrlOrFileName);
+            }
 
             document.getElementById("link1").value = link1;
             document.getElementById("link2").value = link2;
